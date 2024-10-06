@@ -1,0 +1,14 @@
+#!/bin/bash
+REPO_DIR="/var/www/html-cicd-demo"
+REPO_URL="https://github.com/Kavi1312/CICD1pipeline.git"
+
+if [ -d "$REPO_DIR" ]; then
+            echo "Updating existing repository..."
+                cd $REPO_DIR && git pull
+        else
+                    echo "Cloning repository..."
+                        git clone $REPO_URL $REPO_DIR
+fi
+# Restart Nginx to apply the changes
+sudo systemctl restart nginx
+echo "Deployment Completed"
